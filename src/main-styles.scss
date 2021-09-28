@@ -1,0 +1,12 @@
+
+
+$turquoise: #44ddd0;
+$green: #27d7a1;
+
+html {      
+    background: linear-gradient(to right top, $turquoise, $green);
+}
+
+html, body {
+    height: 100%;
+}

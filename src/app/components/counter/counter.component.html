@@ -1,0 +1,40 @@
+<div class="uk-container">
+    <div class="uk-card uk-card-default uk-width-5-6 uk-align-center uk-margin-large-top">
+        <div class="uk-card-header">
+            <h2 class="uk-heading-small uk-text-center uk-text-bold">Individual Counter</h2>
+        </div>
+        <div class="uk-card-body uk-text-center">
+            <p>Current count: <span data-testid="count">{{ count }}</span></p>
+        </div>
+        <div class="uk-card-footer uk-flex-center uk-flex">
+            <button 
+                class="uk-button uk-button-default uk-button-medium uk-margin-right" 
+                (click)="increment()" 
+                data-testid="increment-button"
+            >
+                Increase Count
+            </button>
+            <button 
+                class="uk-button uk-button-default uk-button-medium uk-margin-right" 
+                (click)="decrement()"
+                data-testid="decrement-button"
+            >
+                Decrease Count
+            </button>
+
+            <input 
+                #resetInput 
+                class="uk-margin-right uk-input uk-form-width-small" 
+                type="number"
+                data-testid="reset-input"/>
+            <button 
+                class="uk-button uk-button-default uk-button-medium" 
+                (click)="resetCount(+resetInput.value)"
+                data-testid="reset-button"
+            >
+                Reset
+            </button>
+        </div>
+    </div>
+</div>
+  
