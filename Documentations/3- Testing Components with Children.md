@@ -198,17 +198,17 @@ beforeEach(async () => {
 Our full testing code will look something like this now:
 ``` javascript
 describe('AppComponent with ng-mocks', () => {
-  let fixture: ComponentFixture<HomeComponent>;
-  let component: HomeComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
   let counter: CounterComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeComponent, MockComponent(CounterComponent)],
+      declarations: [AppComponent, MockComponent(CounterComponent)],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
