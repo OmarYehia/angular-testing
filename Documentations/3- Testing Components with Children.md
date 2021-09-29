@@ -183,7 +183,7 @@ In this approach we tell Angular that the `<app-counter>` element is a `FakerCou
 
 There's another approach. A very powerful library called [`ng-mocks`](https://github.com/ike18t/ng-mocks). Among other things, ng-mocks helps creating fake Components to substitute children. The MockComponent function expects the original Component and returns a fake that resembles the original.
 
-Instead of creating a `FakeCounterComponent`, we call `MockComponent(CounterComponent)` and add the fake to the testing Module.
+Instead of creating a `FakeCounterComponent`, we call `MockComponent(CounterComponent)` and add the fake to the testing Module. This will create a mock component of the original component while not caring for internal details of the original component, the `MockComponent` will take care of generating an exact replica.
 ``` javascript
 import { MockComponent } from 'ng-mocks';
 
@@ -205,13 +205,17 @@ describe('AppComponent with ng-mocks', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent, MockComponent(CounterComponent)],
-      schemas: [NO_ERRORS_SCHEMA],
+      // Notice that we no longer need this schema because we are creating a fake instance of the CounterComponent
+      // schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
+    /* By.directive() is another method to query the DebugElement to look for a directive
+     * and since the Components are directive, we can directly specify it as a parameter to this function
+     */
     const counterEl = fixture.debugElement.query(
       By.directive(CounterComponent)
     );
