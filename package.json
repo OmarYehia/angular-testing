@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "bulma": "^0.9.3",
+    "ng-mocks": "^12.5.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "uikit": "^3.7.4",

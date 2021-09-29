@@ -1,2 +1,5 @@
-<app-counter [startCount]="5"></app-counter>
+<app-counter 
+    [startCount]="5"
+    (countChange)="handleCountChange($event)">
+</app-counter>
 <app-counter></app-counter>
