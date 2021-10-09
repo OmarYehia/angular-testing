@@ -1,0 +1,124 @@
+<div class="form-container">
+    <form data-testid="form" [formGroup]="profileForm" class="uk-card uk-card-default uk-width-3-4 uk-form-horizontal uk-padding form" (ngSubmit)="signUp()">
+        <div class="uk-margin">
+            <label class="uk-form-label" for="username">Username</label>
+            <div class="uk-form-controls">
+                <div class="uk-inline uk-width-100">
+                    <div class="uk-form-icon uk-form-icon-flip" uk-spinner="ratio: 0.8" *ngIf="usernameAsyncValidator"></div>
+                    <input 
+                        class="uk-input"
+                        [ngClass]="profileForm.controls.username.touched ? (profileForm.controls.username.valid ? 'uk-form-success' : 'uk-form-danger') : ''"
+                        type="text" 
+                        formControlName="username"
+                        data-testid="username"
+                    >
+                </div>
+            </div>
+
+            <div *ngIf="profileForm.controls.username.invalid && profileForm.controls.username.touched || profileForm.controls.username.dirty">
+                <div *ngIf="profileForm.controls.username.errors?.required">
+                    <label class="uk-float-right uk-text-small uk-text-danger">Username is required.</label>
+                </div>
+
+                <div *ngIf="profileForm.controls.username.errors?.usernameTaken">
+                    <label class="uk-float-right uk-text-small uk-text-danger">Username is already taken.</label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="email">Email</label>
+            <div class="uk-form-controls">
+                <div class="uk-inline uk-width-100">
+                    <div class="uk-form-icon uk-form-icon-flip" uk-spinner="ratio: 0.8" *ngIf="emailAsyncValidator"></div>
+                    <input 
+                        class="uk-input"
+                        [ngClass]="profileForm.controls.email.touched ? (profileForm.controls.email.valid ? 'uk-form-success' : 'uk-form-danger') : ''"
+                        type="email" 
+                        formControlName="email"
+                        data-testid="email"
+                    >
+                </div>
+            </div>
+            <div *ngIf="profileForm.controls.email.invalid && profileForm.controls.email.touched || profileForm.controls.email.dirty">
+                <div *ngIf="profileForm.controls.email.errors?.required">
+                    <label class="uk-float-right uk-text-small uk-text-danger">Email is required.</label>
+                </div>
+
+                <div *ngIf="profileForm.controls.email.errors?.email">
+                    <label class="uk-float-right uk-text-small uk-text-danger">Should be a valid email address.</label>
+                </div>
+
+                <div *ngIf="profileForm.controls.email.errors?.emailTaken">
+                    <label class="uk-float-right uk-text-small uk-text-danger">Email is already taken.</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" for="password">Password</label>
+            <div class="uk-form-controls">
+                <div class="uk-inline uk-width-100">
+
+                    <div class="uk-form-icon uk-form-icon-flip" uk-spinner="ratio: 0.8" *ngIf="passwordAsyncValidator"></div>
+                    <input 
+                        class="uk-input"
+                        [ngClass]="profileForm.controls.password.touched ? (profileForm.controls.password.valid ? 'uk-form-success' : 'uk-form-danger') : ''"
+                        type="password" 
+                        formControlName="password"
+                        data-testid="password"
+                    >
+                </div>
+            </div>
+            <div *ngIf="profileForm.controls.password.invalid && profileForm.controls.password.touched || profileForm.controls.password.dirty">
+                <div *ngIf="profileForm.controls.password.errors?.required">
+                    <label class="uk-float-right uk-text-small uk-text-danger">Password is required.</label>
+                </div>
+
+                <div *ngIf="profileForm.controls.password.errors?.minlength">
+                    <label class="uk-float-right uk-text-small uk-text-danger">Password should be at least 3 characters.</label>
+                </div>
+
+                <div *ngIf="profileForm.controls.password.errors?.passwordStrength && profileForm.controls.password.errors?.passwordStrength.score < 3">
+                    <label class="uk-float-right uk-text-small uk-text-danger">
+                        Your password is weak. You should {{ profileForm.controls.password.errors?.passwordStrength.suggestions }}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-form-controls">
+                <div class="uk-inline uk-width-100">
+                    <input 
+                        class="uk-checkbox"
+                        [ngClass]="profileForm.controls.tos.touched ? (profileForm.controls.tos.valid ? 'uk-form-success' : 'uk-form-danger') : ''"
+                        type="checkbox" 
+                        formControlName="tos"
+                        data-testid="tos"
+                    >
+                    <label class="uk-text-small uk-margin-left">I've read and accept the <a href="#">Terms and Conditions</a></label>
+                </div>
+            </div>
+            <div *ngIf="profileForm.controls.tos.touched && profileForm.controls.tos.invalid">
+                <div *ngIf="profileForm.controls.tos.errors?.required">
+                    <label class="uk-float-right uk-text-small uk-text-danger">You need to accept Terms and Conditions.</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <button 
+                class="uk-button uk-button-secondary uk-float-right" 
+                type="submit"
+                [disabled]="!profileForm.valid"
+                data-testid="register-button"
+            >
+                Register
+            </button>
+        </div>
+        
+    </form>
+</div>
+
